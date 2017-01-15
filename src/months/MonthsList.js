@@ -1,38 +1,51 @@
 import React from "react";
 import update from "immutability-helper";
+import Match from "react-router/Match";
+import Link from "react-router/Link";
 import FloatingActionButton from "material-ui/FloatingActionButton";
 import ContentAdd from "material-ui/svg-icons/content/add";
 import Month from "./Month";
+import AddMonth from "./AddMonth";
 import "./MonthsList.css";
 
 class MonthsList extends React.Component {
-  constructor(props) {
-    super(props);
+  static contextTypes = {router: React.PropTypes.object.isRequired};
 
-    this.onAddMonth = this.onAddMonth.bind(this);
+  state = {months: []};
 
-    this.state = {months: []};
-  }
-
-  onAddMonth() {
-    this.setState({
-      months: update(this.state.months, {$push: [{year: 2016, month: 1}]})
-    });
-  }
+  onAddMonth = (dayOfMonth: Date) => {
+    const {router} = this.context;
+    this.setState(
+      {
+        months: update(this.state.months, {
+          $push: [
+            {year: dayOfMonth.getFullYear(), month: dayOfMonth.getMonth()}
+          ]
+        })
+      },
+      () => router.transitionTo("/")
+    );
+  };
 
   render() {
     return (
       <div className="MonthsList">
         {
           this.state.months.map(
-            (month, idx) => <Month month={month} key={idx} />
+            ({year, month}) => (
+              <Month year={year} month={month} key={`${year}${month}`} />
+            )
           )
         }
-        <FloatingActionButton className="MonthsList__Add" onClick={
-          this.onAddMonth
-        }>
-          <ContentAdd />
-        </FloatingActionButton>
+        <Link to="/new">
+          <FloatingActionButton className="MonthsList__Add">
+            <ContentAdd />
+          </FloatingActionButton>
+        </Link>
+        <Match
+          pattern="/new"
+          render={() => <AddMonth onSave={this.onAddMonth} />}
+        />
       </div>
     );
   }

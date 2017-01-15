@@ -5,19 +5,17 @@ import "./Month.css";
 
 class Month extends React.Component {
   static propTypes = {
-    month: React.PropTypes.shape({
-      year: React.PropTypes.number.isRequired,
-      month: React.PropTypes.number.isRequired
-    })
+    year: React.PropTypes.number.isRequired,
+    month: React.PropTypes.number.isRequired
   };
 
   render() {
-    const {month} = this.props;
+    const {year, month} = this.props;
 
     return (
-      <Link to={`/${month.year}/${month.month}`}>
+      <Link to={`/${year}/${month}`}>
         <Paper className="Month" zDepth={2}>
-          <span>{month.year}/{month.month}</span>
+          <span>{year}/{month}</span>
         </Paper>
       </Link>
     );

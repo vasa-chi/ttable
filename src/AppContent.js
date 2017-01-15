@@ -1,5 +1,6 @@
 import React from "react";
-import {Miss,Match} from "react-router";
+import Miss from "react-router/Miss";
+import Match from "react-router/Match";
 import createAsyncComponent from "./createAsyncComponent";
 
 const NoMatch = function({location}) {
@@ -22,7 +23,7 @@ class AppContent extends React.Component {
   render() {
     return (
       <div className="App__content">
-        <Match pattern="/" exactly component={MonthsList} />
+        <Match pattern="/" component={MonthsList} />
         <Miss component={NoMatch} />
       </div>
     );

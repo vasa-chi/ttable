@@ -9,6 +9,7 @@
     "typescript": "^2.1.5"
   },
   "dependencies": {
+    "date-fns": "^1.25.0",
     "immutability-helper": "^2.1.1",
     "material-ui": "^0.16.6",
     "react": "^15.4.2",
