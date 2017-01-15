@@ -1,15 +1,12 @@
 import React, {Component} from "react";
-import {AppBar, Drawer, MenuItem} from "material-ui";
-import {Link, Miss} from "react-router";
-import "./App.css";
+import AppBar from "material-ui/AppBar";
+import Drawer from "material-ui/Drawer";
+import MenuItem from "material-ui/MenuItem";
+import Link from "react-router/Link";
 
-const NoMatch = function({location}) {
-  return (
-    <div>
-      <code>{`No match for ${location.pathname}`}</code>
-    </div>
-  );
-};
+import AppContent from "./AppContent";
+
+import "./App.css";
 
 class App extends Component {
   constructor(props) {
@@ -26,27 +23,27 @@ class App extends Component {
   }
 
   onDrawerClose() {
-    console.log(this);
     this.setState({open: false});
   }
 
   render() {
     return (
       <div className="App">
-        <AppBar onLeftIconButtonTouchTap={
-          this.onDrawerOpen.bind(this)
-        } title="Ttable" iconClassNameRight="muidocs-icon-navigation-expand-more" />
-        <Drawer docked={false} open={this.state.open} onRequestChange={
-          open => this.setState({open})
-        }>
+        <AppBar
+          onLeftIconButtonTouchTap={this.onDrawerOpen.bind(this)}
+          title={<Link to="/">TTable</Link>}
+          iconClassNameRight="muidocs-icon-navigation-expand-more"
+        />
+        <Drawer
+          docked={false}
+          open={this.state.open}
+          onRequestChange={open => this.setState({open})}
+        >
           <MenuItem onTouchTap={this.onDrawerClose}>
             <Link to="/one">Page One</Link>
           </MenuItem>
-          <MenuItem onTouchTap={this.onDrawerClose}>
-            <Link to="/two">Page Two</Link>
-          </MenuItem>
         </Drawer>
-        <Miss component={NoMatch} />
+        <AppContent />
       </div>
     );
   }
