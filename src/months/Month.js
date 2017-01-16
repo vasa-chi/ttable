@@ -1,6 +1,14 @@
 import React from "react";
-import Paper from "material-ui/Paper";
+import Match from "react-router/Match";
+import {Card,// CardActions,
+  // CardHeader,
+  // CardMedia,
+  CardTitle} from "material-ui/Card";
 import Link from "react-router/Link";
+// import Subheader from "material-ui/Subheader";
+// import Divider from "material-ui/Divider";
+import cs from "classnames";
+import Details from "./Details";
 import "./Month.css";
 
 class Month extends React.Component {
@@ -14,9 +22,25 @@ class Month extends React.Component {
 
     return (
       <Link to={`/${year}/${month}`}>
-        <Paper className="Month" zDepth={2}>
-          <span>{year}/{month}</span>
-        </Paper>
+        {({onClick, href, isActive}) => {
+            let className = cs("Month", {"Month--active": isActive});
+            return (
+              <Card className={className} zDepth={2}>
+                <CardTitle
+                  title={(
+                      <a
+                        href={href}
+                        onClick={onClick}
+                        className="Month__Header"
+                      >
+                        {year}/{month}
+                      </a>
+                    )}
+                />
+                <Match pattern={`/${year}/${month}`} component={Details} />
+              </Card>
+            );
+          }}
       </Link>
     );
   }

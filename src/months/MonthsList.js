@@ -11,7 +11,7 @@ import "./MonthsList.css";
 class MonthsList extends React.Component {
   static contextTypes = {router: React.PropTypes.object.isRequired};
 
-  state = {months: []};
+  state = {months: [{year: 2017, month: 0}]};
 
   onAddMonth = (dayOfMonth: Date) => {
     const {router} = this.context;
