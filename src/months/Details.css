@@ -7,3 +7,7 @@
 .Details--loading {
   padding-bottom: 0 !important;
 }
+
+.Details__Progress {
+  border-radius: 0 !important;
+}

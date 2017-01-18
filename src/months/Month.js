@@ -11,6 +11,16 @@ import cs from "classnames";
 import Details from "./Details";
 import "./Month.css";
 
+const MonthTitle = ({onClick, href, isActive, year, month}) => isActive ? (
+    <Link to="/" className="Month__Header">
+      {year}/{month}
+    </Link>
+  ) : (
+    <a href={isActive ? "/" : href} onClick={onClick} className="Month__Header">
+      {year}/{month}
+    </a>
+  );
+
 class Month extends React.Component {
   static propTypes = {
     year: React.PropTypes.number.isRequired,
@@ -27,17 +37,24 @@ class Month extends React.Component {
             return (
               <Card className={className} zDepth={2}>
                 <CardTitle
-                  title={(
-                      <a
-                        href={href}
+                  style={{padding: 0}}
+                  title={
+                    (
+                      <MonthTitle
                         onClick={onClick}
-                        className="Month__Header"
-                      >
-                        {year}/{month}
-                      </a>
-                    )}
+                        href={href}
+                        isActive={isActive}
+                        year={year}
+                        month={month}
+                      />
+                    )
+                  }
                 />
-                <Match pattern={`/${year}/${month}`} component={Details} />
+                <Match
+                  exactly
+                  pattern={`/${year}/${month}`}
+                  component={Details}
+                />
               </Card>
             );
           }}

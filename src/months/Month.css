@@ -6,6 +6,7 @@
   text-decoration: none;
   display: block;
   color: inherit;
+  padding: 16px;
 }
 
 .Month--active {
