@@ -11,7 +11,10 @@ import {
   TableRow,
   TableRowColumn
 } from "material-ui/Table";
+import {dates} from "./common";
 import "./Details.css";
+
+console.log(dates(new Date()));
 
 class Details extends React.Component {
   state = {loading: true, tab: "expenses"};

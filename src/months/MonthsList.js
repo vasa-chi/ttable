@@ -13,7 +13,7 @@ class MonthsList extends React.Component {
 
   state = {months: [{year: 2017, month: 0}]};
 
-  onAddMonth = (dayOfMonth: Date) => {
+  onAddMonth = dayOfMonth => {
     const {router} = this.context;
     this.setState(
       {
@@ -31,11 +31,9 @@ class MonthsList extends React.Component {
     return (
       <div className="MonthsList">
         {
-          this.state.months.map(
-            ({year, month}) => (
-              <Month year={year} month={month} key={`${year}${month}`} />
-            )
-          )
+          this.state.months.map(({year, month}) => (
+            <Month year={year} month={month} key={`${year}${month}`} />
+          ))
         }
         <Link to="/new">
           <FloatingActionButton className="MonthsList__Add">

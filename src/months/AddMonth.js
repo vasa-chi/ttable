@@ -4,13 +4,10 @@ import Dialog from "material-ui/Dialog";
 import DatePicker from "material-ui/DatePicker";
 import FlatButton from "material-ui/FlatButton";
 import startOfMonth from "date-fns/start_of_month";
+import {monthNameFormat} from "./format";
 
 class AddMonth extends React.Component {
   static propTypes = {onSave: React.PropTypes.func.isRequired};
-  static format = new global.Intl.DateTimeFormat("ru", {
-    month: "long",
-    year: "numeric"
-  }).format;
 
   state = {month: null};
 
@@ -38,7 +35,7 @@ class AddMonth extends React.Component {
           autoOk
           value={month}
           onChange={this.onBeginChange}
-          formatDate={AddMonth.format}
+          formatDate={monthNameFormat}
         />
       </Dialog>
     );

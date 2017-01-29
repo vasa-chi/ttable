@@ -1,25 +1,11 @@
 import React from "react";
 import Match from "react-router/Match";
-import {Card,// CardActions,
-  // CardHeader,
-  // CardMedia,
-  CardTitle} from "material-ui/Card";
+import {Card,CardTitle} from "material-ui/Card";
 import Link from "react-router/Link";
-// import Subheader from "material-ui/Subheader";
-// import Divider from "material-ui/Divider";
 import cs from "classnames";
 import Details from "./Details";
+import MonthTitle from "./MonthTitle";
 import "./Month.css";
-
-const MonthTitle = ({onClick, href, isActive, year, month}) => isActive ? (
-    <Link to="/" className="Month__Header">
-      {year}/{month}
-    </Link>
-  ) : (
-    <a href={isActive ? "/" : href} onClick={onClick} className="Month__Header">
-      {year}/{month}
-    </a>
-  );
 
 class Month extends React.Component {
   static propTypes = {
@@ -28,7 +14,8 @@ class Month extends React.Component {
   };
 
   render() {
-    const {year, month} = this.props;
+    let {year, month} = this.props;
+    let monthStart = new Date(year, month, 1);
 
     return (
       <Link to={`/${year}/${month}`}>
@@ -44,8 +31,7 @@ class Month extends React.Component {
                         onClick={onClick}
                         href={href}
                         isActive={isActive}
-                        year={year}
-                        month={month}
+                        month={monthStart}
                       />
                     )
                   }

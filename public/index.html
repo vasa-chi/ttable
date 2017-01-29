@@ -17,11 +17,11 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <script>
-      // if ('serviceWorker' in navigator) {
-      //   window.addEventListener('load', function() {
-      //     navigator.serviceWorker.register('/service-worker.js');
-      //   });
-      // }
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/service-worker.js');
+        });
+      }
     </script>
     <title>React App</title>
   </head>
